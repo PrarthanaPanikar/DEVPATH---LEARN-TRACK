@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevPath — Your Dream Company Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden}
+
+/* ════════════════════════════════════════
+   AUTH  (white)
+════════════════════════════════════════ */
+#authPage{min-height:100vh;background:#fff;display:flex;align-items:stretch}
+
+.auth-left{
+  width:400px;flex-shrink:0;
+  background:linear-gradient(155deg,#7c3aed 0%,#4f46e5 55%,#0ea5e9 100%);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:3rem 2.5rem;position:relative;overflow:hidden;
+}
+.auth-left::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.12) 0%,transparent 50%),
+             radial-gradient(circle at 80% 80%,rgba(255,255,255,.08) 0%,transparent 50%)}
+.al-logo{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;
+  display:flex;align-items:center;gap:10px;margin-bottom:2rem;position:relative}
+.al-dot{width:10px;height:10px;background:#fff;border-radius:50%;
+  box-shadow:0 0 0 4px rgba(255,255,255,.3);animation:dotpulse 2s infinite}
+@keyframes dotpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}50%{box-shadow:0 0 0 10px rgba(255,255,255,0)}}
+.al-tag{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.4rem;
+  color:rgba(255,255,255,.9);text-align:center;line-height:1.45;position:relative;margin-bottom:2rem}
+.al-pills{display:flex;flex-direction:column;gap:.65rem;width:100%;position:relative}
+.al-pill{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:10px;
+  padding:.75rem 1rem;display:flex;align-items:center;gap:.75rem;
+  color:#fff;font-size:.76rem;backdrop-filter:blur(8px)}
+.al-pill-ico{font-size:1.1rem}
+
+.auth-right{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;background:#fff}
+.auth-card{width:100%;max-width:430px}
+
+.auth-tabs{display:flex;background:#f1f5f9;border-radius:10px;padding:4px;margin-bottom:1.75rem}
+.auth-tab{flex:1;padding:.55rem;border:none;background:transparent;border-radius:7px;
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:#64748b;cursor:pointer;transition:all .2s}
+.auth-tab.active{background:#fff;color:#7c3aed;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+.auth-title{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;color:#0f172a;
+  letter-spacing:-.5px;margin-bottom:.3rem}
+.auth-sub{font-size:.72rem;color:#94a3b8;margin-bottom:1.5rem;line-height:1.6}
+
+.role-picker{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.25rem}
+.role-card{border:2px solid #e2e8f0;border-radius:11px;padding:.9rem;cursor:pointer;
+  text-align:center;transition:all .2s;background:#fff}
+.role-card:hover{border-color:#a78bfa;background:#faf5ff}
+.role-card.selected{border-color:#7c3aed;background:#faf5ff;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.rc-ico{font-size:1.6rem;margin-bottom:.35rem}
+.rc-name{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:#0f172a}
+.rc-desc{font-size:.62rem;color:#94a3b8;margin-top:1px}
+
+.fg{margin-bottom:.9rem}
+.fl{display:block;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#475569;margin-bottom:5px}
+.fi{width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8f0;border-radius:8px;
+  font-family:'DM Mono',monospace;font-size:.8rem;color:#0f172a;background:#fff;
+  transition:all .2s;outline:none}
+.fi:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.fi::placeholder{color:#cbd5e1}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+.fac-code-wrap{position:relative}
+.fac-code-badge{position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  background:#faf5ff;border:1px solid #a78bfa;border-radius:4px;padding:1px 6px;
+  font-size:.58rem;color:#7c3aed;font-weight:700}
+
+.btn-auth{width:100%;padding:.78rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;
+  font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;
+  box-shadow:0 4px 15px rgba(124,58,237,.35);margin-top:.4rem}
+.btn-auth:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(124,58,237,.45)}
+
+.auth-demo{font-size:.67rem;color:#94a3b8;text-align:center;margin-top:.9rem;line-height:1.7}
+.auth-demo strong{color:#7c3aed}
+.auth-err{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;
+  padding:.55rem .9rem;font-size:.7rem;color:#dc2626;margin-bottom:.9rem;display:none}
+
+/* ════════════════════════════════════════
+   CSS VARS FOR DARK STUDENT THEME
+════════════════════════════════════════ */
+.dark-wrap{
+  --bg:#0a0a0f;--surface:#111118;--surface2:#16161f;--border:#1e1e2e;
+  --accent:#7c3aed;--accent2:#06b6d4;--accent3:#f59e0b;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#94a3b8;
+  --green:#10b981;--red:#ef4444;--orange:#f97316;
+}
+
+/* ════════════════════════════════════════
+   STUDENT PLATFORM (dark)
+════════════════════════════════════════ */
+#studentPlatform{display:none}
+.dark-wrap{background:var(--bg);color:var(--text);min-height:100vh;position:relative}
+.dark-wrap::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(124,58,237,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,.03) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* nav */
+.main-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;
+  justify-content:space-between;padding:0 2rem;height:60px;
+  background:rgba(10,10,15,.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
+  letter-spacing:-.5px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:navpulse 2s infinite}
+@keyframes navpulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.6)}50%{box-shadow:0 0 0 8px rgba(124,58,237,0)}}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.72rem;
+  letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-actions{display:flex;gap:.75rem;align-items:center}
+.btn{padding:.42rem 1rem;border-radius:6px;font-family:'DM Mono',monospace;
+  font-size:.72rem;cursor:pointer;border:none;transition:all .2s;letter-spacing:.05em}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--text)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 20px rgba(124,58,237,.4)}
+.btn-primary:hover{background:#6d28d9}
+
+.user-chip{display:flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:100px;padding:3px 12px 3px 3px;
+  font-size:.7rem;color:var(--text-dim)}
+.user-av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:.72rem;font-weight:700;color:#fff}
+
+/* hero */
+.hero{position:relative;z-index:1;padding:5rem 2rem 3rem;text-align:center;max-width:800px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;
+  background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);
+  border-radius:100px;padding:.28rem 1rem;font-size:.67rem;color:#a78bfa;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;
+  line-height:1.06;letter-spacing:-2px;margin-bottom:1.2rem;color:var(--text)}
+.hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent)}
+.hero p{color:var(--text-dim);font-size:.88rem;line-height:1.8;max-width:510px;margin:0 auto 2.5rem}
+
+/* company */
+.co-section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 2rem 4rem}
+.sec-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.2em;color:var(--text-muted);margin-bottom:1rem}
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.7rem;margin-bottom:2rem}
+.co-card{position:relative;padding:1rem;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;cursor:pointer;transition:all .25s;text-align:center;overflow:hidden}
+.co-card::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,var(--co-clr,var(--accent)) 0%,transparent 70%);
+  opacity:0;transition:opacity .3s}
+.co-card:hover::before,.co-card.selected::before{opacity:.08}
+.co-card:hover,.co-card.selected{border-color:var(--co-clr,var(--accent));transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.co-card.selected{box-shadow:0 0 0 1px var(--co-clr,var(--accent)),0 8px 30px rgba(0,0,0,.4)}
+.co-ico{font-size:1.75rem;margin-bottom:.35rem}
+.co-name{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:var(--text)}
+.co-tag{font-size:.58rem;color:var(--text-muted);margin-top:2px}
+
+/* main layout */
+.main-content{position:relative;z-index:1;display:grid;grid-template-columns:270px 1fr;
+  max-width:1400px;margin:0 auto;min-height:calc(100vh - 60px);border-top:1px solid var(--border)}
+
+/* sidebar */
+.sidebar{border-right:1px solid var(--border);padding:1.25rem 0;position:sticky;
+  top:60px;height:calc(100vh - 60px);overflow-y:auto;background:var(--bg)}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sb-sec{margin-bottom:1.5rem}
+.sb-sec-title{font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;
+  color:var(--text-muted);padding:0 1.25rem;margin-bottom:.45rem}
+.sb-item{display:flex;align-items:center;gap:.7rem;padding:.55rem 1.25rem;
+  cursor:pointer;transition:all .15s;border-left:2px solid transparent;
+  font-size:.76rem;color:var(--text-muted)}
+.sb-item:hover{background:var(--surface);color:var(--text)}
+.sb-item.active{background:rgba(124,58,237,.08);border-left-color:var(--accent);color:var(--text)}
+.sb-ico{font-size:.95rem;width:20px;text-align:center}
+.pr-ring{width:18px;height:18px;margin-left:auto}
+.pr-ring svg{transform:rotate(-90deg)}
+.pr-ring circle{fill:none;stroke-width:2}
+.pr-bg{stroke:var(--border)}
+.pr-fg{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset .5s}
+
+/* content */
+.content-area{padding:2rem;background:var(--bg)}
+.rm-header{display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.rm-title{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;
+  letter-spacing:-.5px;margin-bottom:.25rem;color:var(--text)}
+.rm-sub{color:var(--text-muted);font-size:.72rem}
+.rm-stats{display:flex;gap:1.5rem}
+.stat-v{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;line-height:1;color:var(--text)}
+.stat-l{font-size:.62rem;color:var(--text-muted);margin-top:2px}
+
+.prog-bar-wrap-outer{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:1.1rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.25rem}
+.prog-bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:3px;transition:width .8s cubic-bezier(.34,1.56,.64,1)}
+.prog-txt{font-size:.72rem;color:var(--text-muted);white-space:nowrap}
+
+.phase{margin-bottom:2.5rem;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.ph-header{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem}
+.ph-num{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;color:var(--accent);
+  background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);border-radius:4px;
+  padding:.18rem .5rem;letter-spacing:.1em}
+.ph-name{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text)}
+.ph-dur{margin-left:auto;font-size:.62rem;color:var(--text-muted);
+  background:var(--surface);border:1px solid var(--border);padding:.22rem .7rem;border-radius:100px}
+
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.7rem}
+.c-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:1.15rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.c-card:hover{border-color:rgba(124,58,237,.4);transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.c-card.done{border-color:rgba(16,185,129,.3)}
+.c-card.done::after{content:'✓';position:absolute;top:.7rem;right:.7rem;width:18px;height:18px;
+  background:var(--green);border-radius:50%;font-size:.6rem;color:#fff;display:grid;place-items:center}
+.c-top{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.7rem}
+.c-ico{width:34px;height:34px;background:rgba(124,58,237,.15);border-radius:8px;
+  display:grid;place-items:center;font-size:1.05rem;flex-shrink:0}
+.c-title{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;
+  margin-bottom:2px;line-height:1.3;color:var(--text)}
+.c-src{font-size:.62rem;color:var(--text-muted)}
+.c-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.7rem}
+.tag{font-size:.58rem;padding:.12rem .48rem;border-radius:100px;border:1px solid;
+  text-transform:uppercase;letter-spacing:.05em}
+.tag-easy  {color:var(--green); border-color:rgba(16,185,129,.3); background:rgba(16,185,129,.07)}
+.tag-medium{color:var(--orange);border-color:rgba(249,115,22,.3); background:rgba(249,115,22,.07)}
+.tag-hard  {color:var(--red);   border-color:rgba(239,68,68,.3);  background:rgba(239,68,68,.07)}
+.tag-free  {color:var(--accent2);border-color:rgba(6,182,212,.3); background:rgba(6,182,212,.07)}
+.tag-paid  {color:var(--accent3);border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.07)}
+.c-footer{display:flex;align-items:center;justify-content:space-between}
+.c-time{font-size:.62rem;color:var(--text-muted)}
+.c-btn{font-size:.62rem;padding:.28rem .7rem;border-radius:5px;
+  background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);
+  color:#a78bfa;cursor:pointer;transition:all .2s;font-family:'DM Mono',monospace}
+.c-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* student modal */
+.s-modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
+  z-index:200;display:grid;place-items:center;padding:1rem;
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.s-modal-ov.open{opacity:1;pointer-events:all}
+.s-modal{background:var(--surface2);border:1px solid var(--border);border-radius:16px;
+  width:100%;max-width:590px;max-height:80vh;overflow-y:auto;padding:2rem;
+  transform:scale(.95) translateY(18px);transition:transform .3s}
+.s-modal-ov.open .s-modal{transform:scale(1) translateY(0)}
+.sm-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}
+.sm-close{background:transparent;border:1px solid var(--border);color:var(--text-muted);
+  border-radius:6px;padding:.28rem .6rem;cursor:pointer;font-size:1rem;transition:all .2s;
+  font-family:'DM Mono',monospace}
+.sm-close:hover{border-color:var(--red);color:var(--red)}
+.sm-title{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;
+  margin-bottom:.2rem;color:var(--text)}
+.res-list{list-style:none}
+.res-item{display:flex;align-items:center;gap:1rem;padding:.72rem;
+  border:1px solid var(--border);border-radius:8px;margin-bottom:.45rem;
+  transition:all .2s;cursor:pointer}
+.res-item:hover{border-color:var(--accent);background:rgba(124,58,237,.05)}
+.res-name{font-size:.78rem;font-weight:500;font-family:'Syne',sans-serif;color:var(--text)}
+.res-plat{font-size:.62rem;color:var(--text-muted)}
+
+/* streak */
+.streak{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--surface2);
+  border:1px solid var(--border);border-radius:12px;padding:.7rem 1.2rem;
+  display:flex;align-items:center;gap:.7rem;box-shadow:0 8px 32px rgba(0,0,0,.4);
+  z-index:50;animation:slideIn .5s 1s both}
+@keyframes slideIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+.streak-n{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--text)}
+.streak-l{font-size:.62rem;color:var(--text-muted)}
+
+/* ════════════════════════════════════════
+   FACULTY DASHBOARD (white)
+════════════════════════════════════════ */
+#facultyDashboard{display:none;min-height:100vh;background:#f8fafc;font-family:'DM Mono',monospace}
+
+.fac-nav{background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;
+  justify-content:space-between;padding:0 2rem;height:64px;position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.fac-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:#0f172a;
+  display:flex;align-items:center;gap:8px}
+.fac-badge{background:#7c3aed;color:#fff;font-size:.58rem;padding:2px 8px;
+  border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.05em}
+.fac-user-wrap{display:flex;align-items:center;gap:10px;font-size:.72rem;color:#64748b}
+.fac-av{width:32px;height:32px;background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  border-radius:50%;display:grid;place-items:center;font-size:.78rem;font-weight:700;color:#fff}
+.fac-logout{background:transparent;border:1px solid #e2e8f0;border-radius:6px;padding:.32rem .8rem;
+  font-size:.7rem;cursor:pointer;color:#64748b;font-family:'DM Mono',monospace;transition:all .2s}
+.fac-logout:hover{border-color:#ef4444;color:#ef4444}
+
+.fac-layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100vh - 64px)}
+.fac-sidebar{background:#fff;border-right:1px solid #e2e8f0;padding:1.5rem 0}
+.fac-sb-sec{margin-bottom:1.5rem}
+.fac-sb-title{font-size:.58rem;text-transform:uppercase;letter-spacing:.2em;
+  color:#94a3b8;padding:0 1.25rem;margin-bottom:.45rem}
+.fac-sb-item{display:flex;align-items:center;gap:.7rem;padding:.6rem 1.25rem;
+  cursor:pointer;transition:all .15s;border-left:3px solid transparent;
+  font-size:.76rem;color:#64748b}
+.fac-sb-item:hover{background:#f8fafc;color:#0f172a}
+.fac-sb-item.active{background:#faf5ff;border-left-color:#7c3aed;color:#7c3aed}
+
+.fac-content{padding:2rem}
+.fac-pg-title{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:#0f172a;margin-bottom:.2rem}
+.fac-pg-sub{font-size:.72rem;color:#94a3b8;margin-bottom:1.75rem}
+
+.fac-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.75rem}
+.fac-sc{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.15rem;
+  display:flex;align-items:center;gap:1rem;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.fac-sc-ico{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-size:1.2rem;flex-shrink:0}
+.fac-sc-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#0f172a;line-height:1}
+.fac-sc-lbl{font-size:.62rem;color:#94a3b8;margin-top:2px}
+
+.fac-toolbar{background:#fff;border:1px solid #e2e8f0;border-radius:12px;
+  padding:.9rem 1.1rem;display:flex;align-items:center;gap:.85rem;margin-bottom:1.1rem;flex-wrap:wrap}
+.fac-search{flex:1;min-width:190px;padding:.52rem .88rem .52rem 2.1rem;
+  border:1.5px solid #e2e8f0;border-radius:8px;font-family:'DM Mono',monospace;
+  font-size:.78rem;color:#0f172a;outline:none;
+  background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'%3E%3Cpath d='M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") .65rem center/14px no-repeat;
+  transition:all .2s}
+.fac-search:focus{border-color:#7c3aed;background-color:#fff}
+.fac-filter{padding:.52rem .88rem;border:1.5px solid #e2e8f0;border-radius:8px;
+  font-family:'DM Mono',monospace;font-size:.76rem;color:#475569;cursor:pointer;background:#fff}
+.btn-fac-add{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;
+  border-radius:8px;padding:.52rem 1.1rem;font-family:'Syne',sans-serif;font-size:.78rem;
+  font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;
+  box-shadow:0 2px 10px rgba(124,58,237,.3)}
+.btn-fac-add:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,.4)}
+
+.fac-tbl-wrap{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.fac-tbl{width:100%;border-collapse:collapse;font-size:.76rem}
+.fac-tbl thead{background:#f8fafc;border-bottom:1px solid #e2e8f0}
+.fac-tbl th{padding:.82rem 1rem;text-align:left;font-size:.62rem;text-transform:uppercase;
+  letter-spacing:.1em;color:#94a3b8;font-weight:600}
+.fac-tbl td{padding:.85rem 1rem;border-bottom:1px solid #f1f5f9;color:#334155;vertical-align:middle}
+.fac-tbl tr:last-child td{border-bottom:none}
+.fac-tbl tr:hover td{background:#faf5ff}
+.c-name-cell{font-weight:600;color:#0f172a;font-family:'Syne',sans-serif;font-size:.78rem}
+.c-src-cell{color:#94a3b8;font-size:.68rem}
+.diff-b{font-size:.58rem;padding:.18rem .52rem;border-radius:100px;font-weight:600;text-transform:uppercase}
+.diff-easy  {background:#dcfce7;color:#166534}
+.diff-medium{background:#ffedd5;color:#9a3412}
+.diff-hard  {background:#fee2e2;color:#991b1b}
+.free-b{background:#e0f2fe;color:#0369a1;font-size:.58rem;padding:.18rem .52rem;border-radius:100px;font-weight:600;text-transform:uppercase}
+.paid-b{background:#fef3c7;color:#92400e;font-size:.58rem;padding:.18rem .52rem;border-radius:100px;font-weight:600;text-transform:uppercase}
+.fac-acts{display:flex;gap:.45rem}
+.btn-edit,.btn-del{border:none;border-radius:6px;padding:.32rem .7rem;font-size:.66rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s}
+.btn-edit{background:#ede9fe;color:#7c3aed}
+.btn-edit:hover{background:#7c3aed;color:#fff}
+.btn-del{background:#fee2e2;color:#dc2626}
+.btn-del:hover{background:#dc2626;color:#fff}
+
+/* faculty modal */
+.fac-modal-ov{position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(6px);
+  z-index:300;display:grid;place-items:center;padding:1rem;
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.fac-modal-ov.open{opacity:1;pointer-events:all}
+.fac-modal{background:#fff;border-radius:16px;width:100%;max-width:550px;max-height:90vh;
+  overflow-y:auto;padding:2rem;box-shadow:0 24px 60px rgba(0,0,0,.2);
+  transform:scale(.96) translateY(14px);transition:transform .25s}
+.fac-modal-ov.open .fac-modal{transform:scale(1) translateY(0)}
+.fm-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:#0f172a;margin-bottom:.22rem}
+.fm-sub{font-size:.7rem;color:#94a3b8;margin-bottom:1.4rem}
+.fm-fg{margin-bottom:.9rem}
+.fm-label{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;
+  font-weight:600;color:#475569;margin-bottom:4px}
+.fm-input,.fm-select,.fm-textarea{width:100%;padding:.62rem .88rem;
+  border:1.5px solid #e2e8f0;border-radius:8px;font-family:'DM Mono',monospace;
+  font-size:.8rem;color:#0f172a;background:#fff;transition:all .2s;outline:none}
+.fm-input:focus,.fm-select:focus,.fm-textarea:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.fm-textarea{resize:vertical;min-height:75px}
+.fm-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.fm-actions{display:flex;gap:.7rem;margin-top:1.4rem}
+.btn-fm-save{flex:1;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;
+  border-radius:8px;padding:.72rem;font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;
+  cursor:pointer;transition:all .2s;box-shadow:0 2px 10px rgba(124,58,237,.3)}
+.btn-fm-save:hover{transform:translateY(-1px)}
+.btn-fm-cancel{padding:.72rem 1.4rem;background:#fff;border:1.5px solid #e2e8f0;border-radius:8px;
+  font-family:'DM Mono',monospace;font-size:.78rem;color:#64748b;cursor:pointer;transition:all .2s}
+.btn-fm-cancel:hover{border-color:#94a3b8;color:#0f172a}
+
+/* delete confirm */
+.del-ov{position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(6px);
+  z-index:400;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.del-ov.open{opacity:1;pointer-events:all}
+.del-box{background:#fff;border-radius:14px;padding:1.75rem;width:100%;max-width:350px;
+  box-shadow:0 20px 50px rgba(0,0,0,.15);text-align:center}
+.del-ico{font-size:2.2rem;margin-bottom:.65rem}
+.del-ttl{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#0f172a;margin-bottom:.4rem}
+.del-txt{font-size:.72rem;color:#64748b;margin-bottom:1.4rem;line-height:1.6}
+.del-acts{display:flex;gap:.7rem}
+.btn-del-ok{flex:1;background:#dc2626;color:#fff;border:none;border-radius:8px;padding:.65rem;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+.btn-del-no{flex:1;background:#fff;border:1.5px solid #e2e8f0;border-radius:8px;padding:.65rem;
+  font-family:'DM Mono',monospace;font-size:.78rem;color:#64748b;cursor:pointer}
+
+/* empty */
+.fac-empty{text-align:center;padding:3.5rem 2rem;color:#94a3b8}
+.fe-ico{font-size:2.5rem;margin-bottom:.8rem}
+.fe-ttl{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#cbd5e1;margin-bottom:.4rem}
+
+/* toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(70px);
+  background:#0f172a;color:#fff;border-radius:10px;padding:.7rem 1.4rem;font-size:.78rem;
+  z-index:999;opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(0,0,0,.3);
+  pointer-events:none;display:flex;align-items:center;gap:.45rem}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:768px){
+  .auth-left{display:none}
+  .main-content{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto}
+  .fac-layout{grid-template-columns:1fr}
+  .fac-sidebar{display:none}
+  .fac-stats{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ AUTH PAGE ══════════════════════════════════════════════ -->
+<div id="authPage">
+  <div class="auth-left">
+    <div class="al-logo"><div class="al-dot"></div>DevPath</div>
+    <div class="al-tag">"Land your dream job<br>with a roadmap built<br>just for <em>you.</em>"</div>
+    <div class="al-pills">
+      <div class="al-pill"><span class="al-pill-ico">🎯</span>Personalized roadmaps per company</div>
+      <div class="al-pill"><span class="al-pill-ico">📚</span>200+ curated courses & resources</div>
+      <div class="al-pill"><span class="al-pill-ico">🏗️</span>Faculty-managed curriculum</div>
+      <div class="al-pill"><span class="al-pill-ico">🔥</span>Track progress & maintain streaks</div>
+    </div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="switchTab('register')">Register</button>
+      </div>
+      <div class="auth-err" id="authErr"></div>
+
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <div class="auth-title">Welcome back 👋</div>
+        <div class="auth-sub">Sign in to continue your learning journey.</div>
+        <div class="role-picker">
+          <div class="role-card selected" id="lr-student" onclick="setLoginRole('student')">
+            <div class="rc-ico">🎓</div><div class="rc-name">Student</div>
+            <div class="rc-desc">Access roadmaps & courses</div>
+          </div>
+          <div class="role-card" id="lr-faculty" onclick="setLoginRole('faculty')">
+            <div class="rc-ico">👨‍🏫</div><div class="rc-name">Faculty</div>
+            <div class="rc-desc">Manage courses & curriculum</div>
+          </div>
+        </div>
+        <div class="fg"><label class="fl">Email Address</label>
+          <input class="fi" type="email" id="li-email" placeholder="you@university.edu"></div>
+        <div class="fg"><label class="fl">Password</label>
+          <input class="fi" type="password" id="li-pass" placeholder="••••••••"
+            onkeydown="if(event.key==='Enter')handleLogin()"></div>
+        <button class="btn-auth" onclick="handleLogin()">Sign In →</button>
+        <div class="auth-demo">
+          Demo · Student: <strong>student@devpath.io / student123</strong><br>
+          Faculty: <strong>faculty@devpath.io / faculty123</strong>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="registerForm" style="display:none">
+        <div class="auth-title">Create account ✨</div>
+        <div class="auth-sub">Join thousands of students hitting their dream companies.</div>
+        <div class="role-picker">
+          <div class="role-card selected" id="rr-student" onclick="setRegRole('student')">
+            <div class="rc-ico">🎓</div><div class="rc-name">Student</div>
+            <div class="rc-desc">Access roadmaps & courses</div>
+          </div>
+          <div class="role-card" id="rr-faculty" onclick="setRegRole('faculty')">
+            <div class="rc-ico">👨‍🏫</div><div class="rc-name">Faculty</div>
+            <div class="rc-desc">Manage courses & curriculum</div>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label class="fl">First Name</label>
+            <input class="fi" type="text" id="reg-first" placeholder="Aarav"></div>
+          <div class="fg"><label class="fl">Last Name</label>
+            <input class="fi" type="text" id="reg-last" placeholder="Shah"></div>
+        </div>
+        <div class="fg"><label class="fl">Email Address</label>
+          <input class="fi" type="email" id="reg-email" placeholder="you@university.edu"></div>
+        <div class="fg"><label class="fl">Password</label>
+          <input class="fi" type="password" id="reg-pass" placeholder="Min. 8 characters"></div>
+        <div class="fg" id="fac-code-wrap" style="display:none">
+          <label class="fl">Faculty Access Code</label>
+          <div class="fac-code-wrap">
+            <input class="fi" type="text" id="reg-fcode" placeholder="Code provided by admin">
+            <span class="fac-code-badge">ADMIN</span>
+          </div>
+        </div>
+        <button class="btn-auth" onclick="handleRegister()">Create Account →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STUDENT PLATFORM (dark) ═══════════════════════════════ -->
+<div id="studentPlatform">
+<div class="dark-wrap">
+  <nav class="main-nav">
+    <div class="logo"><div class="logo-dot"></div>DevPath</div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Roadmap</a></li>
+      <li><a href="#">Problems</a></li>
+      <li><a href="#">Mock Interviews</a></li>
+      <li><a href="#">Community</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="user-chip">
+        <div class="user-av" id="stu-av" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)">S</div>
+        <span id="stu-name">Student</span>
+      </div>
+      <button class="btn btn-ghost" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- landing -->
+  <div id="s-landing">
+    <div class="hero">
+      <div class="hero-badge">✦ Personalized Roadmaps</div>
+      <h1>Land your job at<br>your <em>dream company</em></h1>
+      <p>Choose your target company and get a personalized learning roadmap with curated courses, problems, and resources.</p>
+    </div>
+    <div class="co-section">
+      <div class="sec-label">// Select your dream company</div>
+      <div class="co-grid" id="co-grid"></div>
+      <div style="text-align:center;margin-top:1rem">
+        <button class="btn btn-primary" id="start-btn"
+          style="opacity:.4;cursor:not-allowed;padding:.72rem 2.4rem;font-size:.84rem"
+          onclick="startRoadmap()">Generate My Roadmap →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- roadmap -->
+  <div id="s-platform" style="display:none">
+    <div class="main-content">
+      <aside class="sidebar">
+        <div class="sb-sec">
+          <div class="sb-sec-title">// Roadmap Phases</div>
+          <div id="sb-phases"></div>
+        </div>
+        <div class="sb-sec">
+          <div class="sb-sec-title">// Tools</div>
+          <div class="sb-item" onclick="showCo()"><span class="sb-ico">🔄</span>Change Company</div>
+        </div>
+      </aside>
+      <main class="content-area">
+        <div class="rm-header">
+          <div>
+            <div class="rm-title" id="rm-title">Roadmap</div>
+            <div class="rm-sub" id="rm-sub">—</div>
+          </div>
+          <div class="rm-stats">
+            <div><div class="stat-v" id="st-courses">0</div><div class="stat-l">COURSES</div></div>
+            <div><div class="stat-v" id="st-done" style="color:var(--green)">0</div><div class="stat-l">DONE</div></div>
+            <div><div class="stat-v" id="st-days" style="color:var(--accent2)">180</div><div class="stat-l">DAYS</div></div>
+          </div>
+        </div>
+        <div class="prog-bar-wrap-outer">
+          <span class="prog-txt" id="prog-pct">0% Complete</span>
+          <div class="prog-bar-track"><div class="prog-bar-fill" id="prog-bar" style="width:0%"></div></div>
+          <span class="prog-txt" id="prog-cnt">0/0</span>
+        </div>
+        <div id="rm-content"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- student modal -->
+  <div class="s-modal-ov" id="sm-ov" onclick="closeSModal(event)">
+    <div class="s-modal">
+      <div class="sm-header">
+        <div>
+          <div class="sm-title" id="sm-title">Resources</div>
+          <div style="font-size:.68rem;color:var(--text-muted)" id="sm-sub"></div>
+        </div>
+        <button class="sm-close" onclick="closeSModal()">✕</button>
+      </div>
+      <ul class="res-list" id="res-list"></ul>
+      <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);display:flex;gap:.7rem">
+        <button class="btn btn-primary" style="flex:1" id="sm-complete-btn">Mark as Complete ✓</button>
+        <button class="btn btn-ghost" onclick="closeSModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="streak">
+    <span style="font-size:1.1rem">🔥</span>
+    <div><div class="streak-n">1</div><div class="streak-l">day streak</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ FACULTY DASHBOARD (white) ═════════════════════════════ -->
+<div id="facultyDashboard">
+  <nav class="fac-nav">
+    <div class="fac-logo">DevPath <span class="fac-badge">FACULTY</span></div>
+    <div class="fac-user-wrap">
+      <div class="fac-av" id="fac-av">F</div>
+      <span id="fac-name">Faculty</span>
+      <button class="fac-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+  <div class="fac-layout">
+    <aside class="fac-sidebar">
+      <div class="fac-sb-sec">
+        <div class="fac-sb-title">// Navigation</div>
+        <div class="fac-sb-item active" onclick="facSb(this)"><span>📚</span> All Courses</div>
+        <div class="fac-sb-item" onclick="openFacModal();facSb(this)"><span>➕</span> Add New Course</div>
+      </div>
+      <div class="fac-sb-sec">
+        <div class="fac-sb-title">// Filter Company</div>
+        <div class="fac-sb-item" onclick="quickFilter('')"><span>🌐</span> All</div>
+        <div class="fac-sb-item" onclick="quickFilter('google')"><span>🔵</span> Google</div>
+        <div class="fac-sb-item" onclick="quickFilter('meta')"><span>🔷</span> Meta</div>
+        <div class="fac-sb-item" onclick="quickFilter('amazon')"><span>🟠</span> Amazon</div>
+        <div class="fac-sb-item" onclick="quickFilter('microsoft')"><span>🟩</span> Microsoft</div>
+        <div class="fac-sb-item" onclick="quickFilter('apple')"><span>⬛</span> Apple</div>
+        <div class="fac-sb-item" onclick="quickFilter('netflix')"><span>🔴</span> Netflix</div>
+      </div>
+    </aside>
+    <div class="fac-content">
+      <div class="fac-pg-title">Course Management</div>
+      <div class="fac-pg-sub">Add, edit, and delete courses across all company roadmaps.</div>
+      <!-- Stats -->
+      <div class="fac-stats">
+        <div class="fac-sc"><div class="fac-sc-ico" style="background:#ede9fe">📚</div>
+          <div><div class="fac-sc-val" id="fs-total">0</div><div class="fac-sc-lbl">TOTAL COURSES</div></div></div>
+        <div class="fac-sc"><div class="fac-sc-ico" style="background:#dcfce7">✅</div>
+          <div><div class="fac-sc-val" id="fs-free">0</div><div class="fac-sc-lbl">FREE COURSES</div></div></div>
+        <div class="fac-sc"><div class="fac-sc-ico" style="background:#ffedd5">💰</div>
+          <div><div class="fac-sc-val" id="fs-paid">0</div><div class="fac-sc-lbl">PAID COURSES</div></div></div>
+        <div class="fac-sc"><div class="fac-sc-ico" style="background:#fee2e2">🔥</div>
+          <div><div class="fac-sc-val" id="fs-hard">0</div><div class="fac-sc-lbl">HARD COURSES</div></div></div>
+      </div>
+      <!-- Toolbar -->
+      <div class="fac-toolbar">
+        <input class="fac-search" type="text" placeholder="Search courses…" id="fac-search" oninput="renderFacTbl()">
+        <select class="fac-filter" id="fac-f-diff" onchange="renderFacTbl()">
+          <option value="">All Difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <select class="fac-filter" id="fac-f-co" onchange="renderFacTbl()">
+          <option value="">All Companies</option>
+          <option value="google">Google</option>
+          <option value="meta">Meta</option>
+          <option value="amazon">Amazon</option>
+          <option value="microsoft">Microsoft</option>
+          <option value="apple">Apple</option>
+          <option value="netflix">Netflix</option>
+          <option value="uber">Uber</option>
+          <option value="startup">Startup</option>
+        </select>
+        <button class="btn-fac-add" onclick="openFacModal()">+ Add Course</button>
+      </div>
+      <!-- Table -->
+      <div class="fac-tbl-wrap">
+        <table class="fac-tbl">
+          <thead><tr>
+            <th>Course</th><th>Company</th><th>Phase</th>
+            <th>Difficulty</th><th>Type</th><th>Hours</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="fac-tbody"></tbody>
+        </table>
+        <div class="fac-empty" id="fac-empty" style="display:none">
+          <div class="fe-ico">📭</div>
+          <div class="fe-ttl">No courses found</div>
+          <div style="font-size:.7rem">Adjust filters or add a new course.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACULTY COURSE MODAL -->
+  <div class="fac-modal-ov" id="fac-modal-ov">
+    <div class="fac-modal">
+      <div class="fm-title" id="fm-title">Add New Course</div>
+      <div class="fm-sub" id="fm-sub">Fill in the details below.</div>
+      <input type="hidden" id="fc-courseId">
+      <div class="fm-row">
+        <div class="fm-fg"><label class="fm-label">Course Title *</label>
+          <input class="fm-input" type="text" id="fc-title" placeholder="e.g. Dynamic Programming"></div>
+        <div class="fm-fg"><label class="fm-label">Icon / Emoji</label>
+          <input class="fm-input" type="text" id="fc-icon" placeholder="🧩" maxlength="4"></div>
+      </div>
+      <div class="fm-row">
+        <div class="fm-fg"><label class="fm-label">Company *</label>
+          <select class="fm-select" id="fc-co">
+            <option value="google">Google</option><option value="meta">Meta</option>
+            <option value="amazon">Amazon</option><option value="microsoft">Microsoft</option>
+            <option value="apple">Apple</option><option value="netflix">Netflix</option>
+            <option value="uber">Uber</option><option value="startup">Startup</option>
+          </select></div>
+        <div class="fm-fg"><label class="fm-label">Phase *</label>
+          <select class="fm-select" id="fc-phase">
+            <option value="0">Phase 1</option>
+            <option value="1">Phase 2</option>
+            <option value="2">Phase 3</option>
+          </select></div>
+      </div>
+      <div class="fm-row">
+        <div class="fm-fg"><label class="fm-label">Difficulty *</label>
+          <select class="fm-select" id="fc-diff">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select></div>
+        <div class="fm-fg"><label class="fm-label">Type</label>
+          <select class="fm-select" id="fc-free">
+            <option value="true">Free</option>
+            <option value="false">Paid</option>
+          </select></div>
+      </div>
+      <div class="fm-row">
+        <div class="fm-fg"><label class="fm-label">Source / Creator</label>
+          <input class="fm-input" type="text" id="fc-src" placeholder="NeetCode, MIT OCW…"></div>
+        <div class="fm-fg"><label class="fm-label">Est. Hours</label>
+          <input class="fm-input" type="number" id="fc-hrs" placeholder="20" min="1" max="300"></div>
+      </div>
+      <div class="fm-fg"><label class="fm-label">Description / Notes</label>
+        <textarea class="fm-textarea" id="fc-desc" placeholder="Brief description of what students will learn…"></textarea></div>
+      <div class="fm-actions">
+        <button class="btn-fm-save" id="fm-save-btn" onclick="saveFacCourse()">Save Course</button>
+        <button class="btn-fm-cancel" onclick="closeFacModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div class="del-ov" id="del-ov">
+    <div class="del-box">
+      <div class="del-ico">🗑️</div>
+      <div class="del-ttl">Delete Course?</div>
+      <div class="del-txt" id="del-txt">This course will be permanently removed.</div>
+      <div class="del-acts">
+        <button class="btn-del-ok" onclick="confirmDel()">Yes, Delete</button>
+        <button class="btn-del-no" onclick="cancelDel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   AUTH STATE
+══════════════════════════════════════════════════ */
+const DEMO = {
+  'student@devpath.io':{ pass:'student123', role:'student', name:'Aarav Shah' },
+  'faculty@devpath.io':{ pass:'faculty123', role:'faculty', name:'Dr. Priya Mehta' },
+};
+const FAC_CODE = 'FAC2024';
+let CU = null;          // current user
+let loginRole = 'student';
+let regRole   = 'student';
+const APP_BASE = (() => {
+  let path = window.location.pathname;
+  if (path.endsWith('index.html')) path = path.replace(/index\.html$/, '');
+  if (!path.endsWith('/')) path += '/';
+  return path;
+})();
+const COURSE_API = window.location.origin + APP_BASE + 'course';
+console.log('Course API URL:', COURSE_API);
+
+function switchTab(t) {
+  document.querySelectorAll('.auth-tab').forEach((b,i)=>b.classList.toggle('active',t==='login'?i===0:i===1));
+  document.getElementById('loginForm').style.display    = t==='login'   ?'block':'none';
+  document.getElementById('registerForm').style.display = t==='register'?'block':'none';
+  document.getElementById('authErr').style.display='none';
+}
+function setLoginRole(r){
+  loginRole=r;
+  document.getElementById('lr-student').classList.toggle('selected',r==='student');
+  document.getElementById('lr-faculty').classList.toggle('selected',r==='faculty');
+}
+function setRegRole(r){
+  regRole=r;
+  document.getElementById('rr-student').classList.toggle('selected',r==='student');
+  document.getElementById('rr-faculty').classList.toggle('selected',r==='faculty');
+  document.getElementById('fac-code-wrap').style.display=r==='faculty'?'block':'none';
+}
+function showErr(m){const e=document.getElementById('authErr');e.textContent=m;e.style.display='block'}
+
+function handleLogin(){
+  document.getElementById('authErr').style.display='none';
+  const email=document.getElementById('li-email').value.trim();
+  const pass =document.getElementById('li-pass').value;
+  if(!email||!pass){showErr('Please fill in all fields.');return}
+
+  fetch('login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success){
+      // Validate userId before proceeding
+      if(data.userId === null || data.userId === undefined || data.userId === -1){
+        showErr('Login successful but unable to get user ID. Please contact support.');
+        return;
+      }
+      CU={email, role: data.role, name: data.name, userId: data.userId};
+      enterApp();
+    } else {
+      showErr(data.message);
+    }
+  })
+  .catch(error => {
+    showErr('Network error: ' + error.message);
+  });
+}
+
+function handleRegister(){
+  document.getElementById('authErr').style.display='none';
+  const first=document.getElementById('reg-first').value.trim();
+  const last =document.getElementById('reg-last').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const pass =document.getElementById('reg-pass').value;
+  if(!first||!last||!email||!pass){showErr('Please fill in all fields.');return}
+  if(pass.length<8){showErr('Password must be at least 8 characters.');return}
+
+  fetch('register', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: `firstName=${encodeURIComponent(first)}&lastName=${encodeURIComponent(last)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}&role=${encodeURIComponent(regRole)}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success){
+      // Validate userId before proceeding
+      if(data.userId === null || data.userId === undefined || data.userId === -1){
+        showErr('Registration successful but unable to get user ID. Please contact support.');
+        return;
+      }
+      CU={email, role: regRole, name: first + ' ' + last, userId: data.userId};
+      showToast('Registration successful! Welcome to DevPath.');
+      enterApp();
+    } else {
+      showErr(data.message);
+    }
+  })
+  .catch(error => {
+    showErr('Network error: ' + error.message);
+  });
+}
+
+function enterApp(){
+  console.log('Logged in user:', CU);
+  document.getElementById('authPage').style.display='none';
+  if(CU.role==='faculty'){
+    document.getElementById('facultyDashboard').style.display='block';
+    const init=CU.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('fac-av').textContent=init;
+    document.getElementById('fac-name').textContent=CU.name;
+    if(!CU.userId){
+      showToast('❌ Unable to determine faculty ID. Please log in again.');
+      return;
+    }
+    initFacData(); renderFacTbl();
+  } else {
+    document.getElementById('studentPlatform').style.display='block';
+    document.getElementById('stu-av').textContent=CU.name[0].toUpperCase();
+    document.getElementById('stu-name').textContent=CU.name;
+    initStudent();
+  }
+}
+
+function logout(){
+  CU=null;
+  document.getElementById('authPage').style.display='flex';
+  document.getElementById('studentPlatform').style.display='none';
+  document.getElementById('facultyDashboard').style.display='none';
+  document.getElementById('s-platform').style.display='none';
+  document.getElementById('s-landing').style.display='block';
+}
+
+/* ══════════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════════ */
+const COS=[
+  {id:'google',   name:'Google',    ico:'🔵',tag:'L3–L5',    clr:'#4285F4',days:180},
+  {id:'meta',     name:'Meta',      ico:'🔷',tag:'E3–E5',    clr:'#0866FF',days:180},
+  {id:'amazon',   name:'Amazon',    ico:'🟠',tag:'SDE I–II', clr:'#FF9900',days:150},
+  {id:'microsoft',name:'Microsoft', ico:'🟩',tag:'62–64',    clr:'#00BCF2',days:150},
+  {id:'apple',    name:'Apple',     ico:'⬛',tag:'ICT2–4',   clr:'#A8A8A8',days:180},
+  {id:'netflix',  name:'Netflix',   ico:'🔴',tag:'Senior',   clr:'#E50914',days:210},
+  {id:'uber',     name:'Uber',      ico:'⬜',tag:'L4–L5',    clr:'#9ca3af',days:120},
+  {id:'startup',  name:'Startup',   ico:'🚀',tag:'Fullstack',clr:'#7c3aed',days:90 },
+];
+
+let RM={
+  google:{sub:'Software Engineer · 6-Month Plan',phases:[
+    {name:'Core CS Foundations',dur:'4 weeks',courses:[
+      {title:'Data Structures & Algorithms',ico:'🧮',src:'MIT OCW',diff:'medium',free:true,hrs:40,res:[{n:'MIT 6.006 Algorithms',p:'MIT OCW',i:'🎓',u:'https://ocw.mit.edu'},{n:'Grokking Algorithms',p:'Manning',i:'📚',u:'https://manning.com'},{n:'LeetCode DSA Sheet',p:'LeetCode',i:'💻',u:'https://leetcode.com'}]},
+      {title:'Computer Architecture & OS',ico:'💾',src:'Stanford CS107',diff:'hard',free:true,hrs:30,res:[{n:'Stanford CS107',p:'Stanford',i:'🎓',u:'https://web.stanford.edu'},{n:'OS: Three Easy Pieces',p:'Free PDF',i:'📖',u:'https://pages.cs.wisc.edu'}]},
+      {title:'Discrete Mathematics',ico:'📐',src:'Khan Academy',diff:'easy',free:true,hrs:20,res:[{n:'Khan Academy Discrete Math',p:'Khan Academy',i:'🎓',u:'https://khanacademy.org'}]},
+    ]},
+    {name:'Coding Interview Prep',dur:'6 weeks',courses:[
+      {title:'Arrays, Strings & Hashing',ico:'🔢',src:'NeetCode',diff:'easy',free:true,hrs:15,res:[{n:'NeetCode Arrays',p:'NeetCode',i:'💻',u:'https://neetcode.io'},{n:'LeetCode Top 150',p:'LeetCode',i:'💻',u:'https://leetcode.com'}]},
+      {title:'Trees, Graphs & BFS/DFS',ico:'🌲',src:'AlgoExpert',diff:'medium',free:false,hrs:20,res:[{n:'AlgoExpert Graphs',p:'AlgoExpert',i:'🎬',u:'https://algoexpert.io'}]},
+      {title:'Dynamic Programming Mastery',ico:'🧩',src:'Errichto',diff:'hard',free:true,hrs:25,res:[{n:'DP for Interviews',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+      {title:'System Design Primer',ico:'🏗️',src:'Gaurav Sen',diff:'hard',free:true,hrs:20,res:[{n:'System Design Primer',p:'GitHub',i:'💻',u:'https://github.com/donnemartin/system-design-primer'}]},
+    ]},
+    {name:'Google-Specific Prep',dur:'4 weeks',courses:[
+      {title:'Google Interview Secrets',ico:'🔍',src:'IGotAnOffer',diff:'medium',free:false,hrs:10,res:[{n:'IGotAnOffer Google Guide',p:'IGotAnOffer',i:'📋',u:'https://igotanoffer.com'}]},
+      {title:'Distributed Systems Deep Dive',ico:'🌐',src:'MIT 6.824',diff:'hard',free:true,hrs:35,res:[{n:'MIT 6.824',p:'MIT OCW',i:'🎓',u:'https://pdos.csail.mit.edu/6.824'},{n:'DDIA Book',p:"O'Reilly",i:'📚',u:'https://oreilly.com'}]},
+    ]},
+  ]},
+  meta:{sub:'Software Engineer · 6-Month Plan',phases:[
+    {name:'Core Programming Skills',dur:'3 weeks',courses:[
+      {title:'Python/C++ for Interviews',ico:'🐍',src:'freeCodeCamp',diff:'easy',free:true,hrs:20,res:[{n:'Python for Everybody',p:'Coursera',i:'🎓',u:'https://coursera.org'}]},
+      {title:'OOP & Design Patterns',ico:'🏛️',src:'Refactoring.Guru',diff:'medium',free:true,hrs:15,res:[{n:'Refactoring.Guru',p:'Website',i:'📋',u:'https://refactoring.guru'}]},
+    ]},
+    {name:'LeetCode & Problem Solving',dur:'8 weeks',courses:[
+      {title:'Sliding Window & Two Pointers',ico:'🪟',src:'NeetCode',diff:'medium',free:true,hrs:12,res:[{n:'NeetCode',p:'NeetCode',i:'💻',u:'https://neetcode.io'}]},
+      {title:'Backtracking & Recursion',ico:'🔁',src:'BackToBack SWE',diff:'hard',free:true,hrs:18,res:[{n:'BackToBack SWE',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+      {title:'Graph Algorithms',ico:'🕸️',src:'William Fiset',diff:'hard',free:true,hrs:22,res:[{n:'William Fiset',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+    ]},
+    {name:'Meta-Specific & Behavioral',dur:'3 weeks',courses:[
+      {title:'Facebook System Design',ico:'💬',src:'Exponent',diff:'hard',free:false,hrs:15,res:[{n:'Exponent System Design',p:'Exponent',i:'🎬',u:'https://exponent.io'}]},
+      {title:'Meta Culture & Behavioral',ico:'🤝',src:'Interviewing.io',diff:'easy',free:false,hrs:6,res:[{n:'Meta Core Values',p:'IGotAnOffer',i:'📋',u:'https://igotanoffer.com'}]},
+    ]},
+  ]},
+  amazon:{sub:'SDE I–II · 5-Month Plan',phases:[
+    {name:'Data Structures & Algorithms',dur:'5 weeks',courses:[
+      {title:'Arrays, LinkedLists, Stacks & Queues',ico:'📦',src:'Coursera',diff:'easy',free:false,hrs:20,res:[{n:'Princeton Algorithms Part 1',p:'Coursera',i:'🎓',u:'https://coursera.org'}]},
+      {title:'Trees & Heaps',ico:'🌳',src:'Abdul Bari',diff:'medium',free:true,hrs:18,res:[{n:'Abdul Bari YouTube',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+    ]},
+    {name:'Amazon 16 Leadership Principles',dur:'2 weeks',courses:[
+      {title:'STAR Method Mastery',ico:'⭐',src:'Day One Careers',diff:'easy',free:true,hrs:8,res:[{n:'Amazon LP Guide',p:'Day One Careers',i:'📋',u:'https://dayonecareers.com'}]},
+      {title:'Behavioral Interview Bank',ico:'🗃️',src:'IGotAnOffer',diff:'medium',free:false,hrs:10,res:[{n:'IGotAnOffer Amazon',p:'IGotAnOffer',i:'📋',u:'https://igotanoffer.com'}]},
+    ]},
+    {name:'System Design for SDE',dur:'4 weeks',courses:[
+      {title:'Scalability & Load Balancing',ico:'⚖️',src:'High Scalability',diff:'hard',free:true,hrs:15,res:[{n:'High Scalability Blog',p:'Website',i:'📋',u:'http://highscalability.com'}]},
+      {title:'AWS Cloud Architecture',ico:'☁️',src:'AWS Training',diff:'medium',free:true,hrs:20,res:[{n:'AWS Cloud Practitioner',p:'AWS',i:'☁️',u:'https://aws.amazon.com/training'}]},
+    ]},
+  ]},
+  microsoft:{sub:'SDE 62–64 · 5-Month Plan',phases:[
+    {name:'Programming & CS Fundamentals',dur:'4 weeks',courses:[
+      {title:'C# / TypeScript Fundamentals',ico:'💻',src:'Microsoft Learn',diff:'easy',free:true,hrs:20,res:[{n:'Microsoft Learn C#',p:'Microsoft Learn',i:'📋',u:'https://learn.microsoft.com'}]},
+      {title:'OOP with Design Patterns',ico:'🏗️',src:'Pluralsight',diff:'medium',free:false,hrs:15,res:[{n:'Pluralsight C# Patterns',p:'Pluralsight',i:'🎬',u:'https://pluralsight.com'}]},
+    ]},
+    {name:'Coding Interview Prep',dur:'7 weeks',courses:[
+      {title:'LeetCode Top 150',ico:'🎯',src:'LeetCode',diff:'medium',free:true,hrs:30,res:[{n:'LeetCode Top Interview 150',p:'LeetCode',i:'💻',u:'https://leetcode.com'}]},
+      {title:'Dynamic Programming',ico:'🧩',src:'Aditya Verma',diff:'hard',free:true,hrs:20,res:[{n:'Aditya Verma DP',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+    ]},
+    {name:'Microsoft Culture & System Design',dur:'4 weeks',courses:[
+      {title:'Growth Mindset & Culture Fit',ico:'🌱',src:'CareerCup',diff:'easy',free:true,hrs:5,res:[{n:'Microsoft Culture Guide',p:'IGotAnOffer',i:'📋',u:'https://igotanoffer.com'}]},
+      {title:'Azure Distributed Systems',ico:'☁️',src:'Azure Learning',diff:'hard',free:true,hrs:25,res:[{n:'Azure Fundamentals',p:'Microsoft Learn',i:'📋',u:'https://learn.microsoft.com'}]},
+    ]},
+  ]},
+  apple:{sub:'ICT2–4 · 6-Month Plan',phases:[
+    {name:'Swift & Apple Ecosystem',dur:'5 weeks',courses:[
+      {title:'Swift Programming Mastery',ico:'🍎',src:'Hacking with Swift',diff:'easy',free:true,hrs:30,res:[{n:'100 Days of SwiftUI',p:'HWS',i:'📋',u:'https://hackingwithswift.com'}]},
+      {title:'iOS App Architecture',ico:'📱',src:'Stanford CS193P',diff:'medium',free:true,hrs:25,res:[{n:'Stanford CS193P',p:'iTunes U',i:'🎓',u:'https://cs193p.sites.stanford.edu'}]},
+    ]},
+    {name:'DSA & Concurrency',dur:'6 weeks',courses:[
+      {title:'Swift DSA Implementation',ico:'🧮',src:'Kodeco',diff:'medium',free:false,hrs:20,res:[{n:'DSA in Swift',p:'Kodeco',i:'📚',u:'https://kodeco.com'}]},
+      {title:'Concurrency & Memory Management',ico:'⚡',src:'Apple WWDC',diff:'hard',free:true,hrs:15,res:[{n:'Apple WWDC Sessions',p:'Apple Developer',i:'🎬',u:'https://developer.apple.com/wwdc'}]},
+    ]},
+    {name:'Apple Interview Focus',dur:'4 weeks',courses:[
+      {title:'Debugging & Performance Tuning',ico:'🔧',src:'Instruments',diff:'hard',free:true,hrs:15,res:[{n:'Xcode Instruments Guide',p:'Apple',i:'📋',u:'https://developer.apple.com'}]},
+      {title:'Human Interface Guidelines',ico:'🎨',src:'Apple HIG',diff:'easy',free:true,hrs:8,res:[{n:'Apple HIG',p:'Apple',i:'📋',u:'https://developer.apple.com/design/human-interface-guidelines'}]},
+    ]},
+  ]},
+  netflix:{sub:'Senior Engineer · 7-Month Plan',phases:[
+    {name:'Senior-Level CS Mastery',dur:'4 weeks',courses:[
+      {title:'Advanced Algorithms & Complexity',ico:'🔬',src:'Tim Roughgarden',diff:'hard',free:false,hrs:40,res:[{n:'Algorithms Specialization',p:'Coursera',i:'🎓',u:'https://coursera.org'}]},
+      {title:'Distributed Systems at Scale',ico:'🌐',src:'Martin Kleppmann',diff:'hard',free:false,hrs:35,res:[{n:'DDIA Book',p:"O'Reilly",i:'📚',u:'https://oreilly.com'},{n:'MIT 6.824',p:'MIT OCW',i:'🎓',u:'https://pdos.csail.mit.edu/6.824'}]},
+    ]},
+    {name:'Netflix Culture & Engineering',dur:'2 weeks',courses:[
+      {title:'Netflix Culture Deck & Values',ico:'🎯',src:'Netflix Jobs',diff:'easy',free:true,hrs:5,res:[{n:'Netflix Culture Memo',p:'Netflix',i:'📋',u:'https://jobs.netflix.com/culture'}]},
+    ]},
+    {name:'Large-Scale System Design',dur:'6 weeks',courses:[
+      {title:'Video Streaming Architecture',ico:'📺',src:'High Scalability',diff:'hard',free:true,hrs:20,res:[{n:'Netflix Tech Blog',p:'Netflix',i:'📋',u:'https://netflixtechblog.com'}]},
+      {title:'Chaos Engineering & Resilience',ico:'💥',src:'Chaos Monkey',diff:'hard',free:true,hrs:15,res:[{n:'Chaos Engineering Book',p:"O'Reilly",i:'📚',u:'https://oreilly.com'}]},
+      {title:'Microservices & API Design',ico:'🔌',src:'Sam Newman',diff:'hard',free:false,hrs:20,res:[{n:'Building Microservices',p:"O'Reilly",i:'📚',u:'https://oreilly.com'}]},
+    ]},
+  ]},
+  uber:{sub:'SDE L4–L5 · 4-Month Plan',phases:[
+    {name:'Algorithms & Problem Solving',dur:'6 weeks',courses:[
+      {title:'Graph Algorithms & Geospatial',ico:'🗺️',src:'Uber Eng Blog',diff:'hard',free:true,hrs:25,res:[{n:'Uber Engineering Blog',p:'Uber',i:'📋',u:'https://eng.uber.com'}]},
+      {title:'LeetCode Medium/Hard Top 100',ico:'💪',src:'LeetCode',diff:'hard',free:true,hrs:30,res:[{n:'LeetCode 75',p:'LeetCode',i:'💻',u:'https://leetcode.com'}]},
+    ]},
+    {name:'Uber-Scale System Design',dur:'4 weeks',courses:[
+      {title:'Real-Time Systems & Dispatch',ico:'🚗',src:'Uber Eng',diff:'hard',free:true,hrs:20,res:[{n:'Uber Engineering Blog',p:'Uber',i:'📋',u:'https://eng.uber.com'}]},
+      {title:'Database Sharding & Caching',ico:'🗄️',src:'ByteByteGo',diff:'medium',free:false,hrs:15,res:[{n:'ByteByteGo System Design',p:'ByteByteGo',i:'🎬',u:'https://bytebytego.com'}]},
+    ]},
+  ]},
+  startup:{sub:'Fullstack Engineer · 3-Month Plan',phases:[
+    {name:'Fullstack Foundations',dur:'4 weeks',courses:[
+      {title:'React & TypeScript Mastery',ico:'⚛️',src:'The Odin Project',diff:'medium',free:true,hrs:40,res:[{n:'The Odin Project',p:'TOP',i:'📋',u:'https://theodinproject.com'}]},
+      {title:'Node.js & REST API',ico:'🟢',src:'freeCodeCamp',diff:'medium',free:true,hrs:25,res:[{n:'Fullstack Open Helsinki',p:'Helsinki',i:'🎓',u:'https://fullstackopen.com'}]},
+      {title:'Databases: SQL & NoSQL',ico:'🗄️',src:'Scrimba',diff:'easy',free:true,hrs:15,res:[{n:'PostgreSQL Tutorial',p:'PostgreSQL',i:'📋',u:'https://postgresql.org'}]},
+    ]},
+    {name:'Ship Fast & DSA Basics',dur:'5 weeks',courses:[
+      {title:'Build 3 Full-Stack Projects',ico:'🔨',src:'Traversy Media',diff:'medium',free:true,hrs:40,res:[{n:'Traversy Media Tutorials',p:'YouTube',i:'▶️',u:'https://youtube.com'}]},
+      {title:'LeetCode Easy Problems (50)',ico:'🎯',src:'LeetCode',diff:'easy',free:true,hrs:20,res:[{n:'LeetCode Easy',p:'LeetCode',i:'💻',u:'https://leetcode.com'}]},
+      {title:'Startup Culture & Negotiation',ico:'💰',src:'YC',diff:'easy',free:true,hrs:8,res:[{n:'YC Startup School',p:'Y Combinator',i:'🎓',u:'https://startupschool.org'}]},
+    ]},
+  ]},
+};
+
+/* ══════════════════════════════════════════════════
+   STUDENT APP
+══════════════════════════════════════════════════ */
+let selCo=null, done=new Set();
+
+function initStudent(){
+  renderCoGrid();
+  try{const s=JSON.parse(localStorage.getItem('dp')||'{}');done=new Set(s.done||[])}catch(e){}
+  // Load all courses from database for students
+  initStudentCourses();
+}
+function renderCoGrid(){
+  document.getElementById('co-grid').innerHTML=COS.map(c=>`
+    <div class="co-card" id="cc-${c.id}" style="--co-clr:${c.clr}" onclick="selCo2('${c.id}')">
+      <div class="co-ico">${c.ico}</div>
+      <div class="co-name">${c.name}</div>
+      <div class="co-tag">${c.tag}</div>
+    </div>`).join('');
+}
+function selCo2(id){
+  selCo=id;
+  document.querySelectorAll('.co-card').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('cc-'+id).classList.add('selected');
+  const b=document.getElementById('start-btn');b.style.opacity='1';b.style.cursor='pointer';
+}
+function startRoadmap(){
+  if(!selCo)return;
+  document.getElementById('s-landing').style.display='none';
+  document.getElementById('s-platform').style.display='block';
+  renderRM(selCo);
+}
+function showCo(){
+  document.getElementById('s-platform').style.display='none';
+  document.getElementById('s-landing').style.display='block';
+}
+function renderRM(cid){
+  const co=COS.find(c=>c.id===cid),rm=RM[cid];
+  if(!co||!rm)return;
+  document.getElementById('rm-title').textContent=co.name+' Roadmap';
+  document.getElementById('rm-sub').textContent=rm.sub;
+  document.getElementById('st-days').textContent=co.days;
+  const tot=rm.phases.reduce((a,p)=>a+p.courses.length,0);
+  document.getElementById('st-courses').textContent=tot;
+  renderSB(rm,cid); renderPhases(rm,cid); updateProg(cid,tot);
+}
+function renderSB(rm,cid){
+  document.getElementById('sb-phases').innerHTML=rm.phases.map((p,i)=>{
+    const tot=p.courses.length,d=p.courses.filter(c=>done.has(cid+'_'+c.title)).length;
+    const circ=2*Math.PI*7,off=circ*(1-(d/tot||0));
+    return `<div class="sb-item ${i===0?'active':''}" onclick="scrollPh(${i},this)">
+      <span class="sb-ico">${['🚀','⚡','🎯','🏆'][i]||'📌'}</span>
+      <span style="flex:1;line-height:1.3">Ph.${i+1}<br><span style="font-size:.6rem;color:var(--text-muted)">${p.name}</span></span>
+      <div class="pr-ring"><svg width="18" height="18" viewBox="0 0 18 18">
+        <circle class="pr-bg" cx="9" cy="9" r="7" stroke-dasharray="${circ}" stroke-dashoffset="0"/>
+        <circle class="pr-fg" cx="9" cy="9" r="7" stroke-dasharray="${circ}" stroke-dashoffset="${off}"/>
+      </svg></div></div>`;
+  }).join('');
+}
+function scrollPh(i,el){
+  document.querySelectorAll('.sb-item').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  const ph=document.querySelectorAll('.phase')[i];
+  if(ph)ph.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderPhases(rm,cid){
+  document.getElementById('rm-content').innerHTML=rm.phases.map((p,pi)=>`
+    <div class="phase" id="ph-${pi}" style="animation-delay:${pi*.1}s">
+      <div class="ph-header">
+        <span class="ph-num">PHASE ${pi+1}</span>
+        <span class="ph-name">${p.name}</span>
+        <span class="ph-dur">⏱ ${p.dur}</span>
+      </div>
+      <div class="courses-grid">${p.courses.map(c=>cardHTML(c,cid)).join('')}</div>
+    </div>`).join('');
+}
+function cardHTML(c,cid){
+  const key=cid+'_'+c.title,d=done.has(key);
+  const enc=encodeURIComponent(JSON.stringify(c));
+  return `<div class="c-card ${d?'done':''}" onclick="openSModal('${enc}','${cid}')">
+    <div class="c-top">
+      <div class="c-ico">${c.ico}</div>
+      <div><div class="c-title">${c.title}</div><div class="c-src">via ${c.src}</div></div>
+    </div>
+    <div class="c-tags">
+      <span class="tag tag-${c.diff}">${c.diff}</span>
+      <span class="tag tag-${c.free?'free':'paid'}">${c.free?'FREE':'PAID'}</span>
+    </div>
+    <div class="c-footer">
+      <span class="c-time">⏱ ~${c.hrs}h</span>
+      <button class="c-btn" onclick="event.stopPropagation();openSModal('${enc}','${cid}')">
+        ${d?'✓ Done':'Start →'}
+      </button>
+    </div>
+  </div>`;
+}
+function updateProg(cid,tot){
+  const rm=RM[cid];let d=0;
+  rm.phases.forEach(p=>p.courses.forEach(c=>{if(done.has(cid+'_'+c.title))d++}));
+  const pct=tot>0?Math.round(d/tot*100):0;
+  document.getElementById('prog-bar').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'% Complete';
+  document.getElementById('prog-cnt').textContent=d+'/'+tot+' courses';
+  document.getElementById('st-done').textContent=d;
+}
+function openSModal(enc,cid){
+  const c=JSON.parse(decodeURIComponent(enc));
+  document.getElementById('sm-title').textContent=c.title;
+  document.getElementById('sm-sub').textContent='via '+c.src+' · ~'+c.hrs+'h';
+  const key=cid+'_'+c.title,d=done.has(key);
+  const btn=document.getElementById('sm-complete-btn');
+  btn.textContent=d?'✓ Marked Complete':'Mark as Complete ✓';
+  btn.style.background=d?'var(--green)':'';
+  btn.onclick=()=>markDone(key,cid);
+  document.getElementById('res-list').innerHTML=(c.res||[]).map(r=>`
+    <li class="res-item" onclick="window.open('${r.u}','_blank')">
+      <span style="font-size:1.1rem">${r.i}</span>
+      <div style="flex:1"><div class="res-name">${r.n}</div><div class="res-plat">${r.p}</div></div>
+      <span style="color:var(--text-muted);font-size:.8rem">↗</span>
+    </li>`).join('');
+  document.getElementById('sm-ov').classList.add('open');
+}
+function closeSModal(e){
+  if(!e||e.target===document.getElementById('sm-ov'))
+    document.getElementById('sm-ov').classList.remove('open');
+}
+function markDone(key,cid){
+  done.has(key)?done.delete(key):done.add(key);
+  try{localStorage.setItem('dp',JSON.stringify({done:[...done]}))}catch(e){}
+  closeSModal(); renderRM(cid);
+}
+
+/* ══════════════════════════════════════════════════
+   FACULTY APP
+══════════════════════════════════════════════════ */
+let FAC=[]; // flat list
+let editIdx=null, delIdx=null;
+
+function initFacData(){
+  if(!CU || !CU.userId){
+    showToast('Cannot load courses: missing user ID.');
+    return;
+  }
+  fetch(COURSE_API + '?facultyId=' + CU.userId)
+  .then(response => {
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return response.text();
+  })
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      FAC = data.map(c => ({
+        course_id: c.course_id,
+        pi: c.phase_id || 0,
+        cid: 'google', // default or stored separately
+        title: c.title || '',
+        diff: c.difficulty || 'easy',
+        hours: c.hours || 0,
+        ico: '📚', // default
+        src: 'Faculty', // default
+        free: true, // default
+        phn: 'Phase ' + ((c.phase_id || 0) + 1)
+      }));
+      updateFacStats();
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError, 'text:', text);
+      FAC = [];
+      updateFacStats();
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching courses:', error);
+    FAC = [];
+    updateFacStats();
+  });
+}
+
+function facSb(el){
+  document.querySelectorAll('.fac-sb-item').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function quickFilter(co){
+  document.getElementById('fac-f-co').value=co;
+  renderFacTbl();
+}
+
+function renderFacTbl(){
+  const q=document.getElementById('fac-search').value.toLowerCase();
+  const diff=document.getElementById('fac-f-diff').value;
+  const co=document.getElementById('fac-f-co').value;
+  let list=FAC.filter((c,i)=>{
+    if(q&&!c.title.toLowerCase().includes(q)&&!c.src.toLowerCase().includes(q))return false;
+    if(diff&&c.diff!==diff)return false;
+    if(co&&c.cid!==co)return false;
+    return true;
+  });
+  const tbody=document.getElementById('fac-tbody');
+  const empty=document.getElementById('fac-empty');
+  if(!list.length){tbody.innerHTML='';empty.style.display='block';return}
+  empty.style.display='none';
+  tbody.innerHTML=list.map(c=>{
+    const ri=FAC.indexOf(c);
+    return `<tr>
+      <td><div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:1.05rem">${c.ico}</span>
+        <div><div class="c-name-cell">${c.title}</div><div class="c-src-cell">via ${c.src}</div></div>
+      </div></td>
+      <td>${c.cid}</td>
+      <td style="color:#64748b;font-size:.7rem">Ph.${c.pi+1}: ${c.phn}</td>
+      <td><span class="diff-b diff-${c.diff}">${c.diff}</span></td>
+      <td><span class="${c.free?'free-b':'paid-b'}">${c.free?'FREE':'PAID'}</span></td>
+      <td style="color:#64748b">${c.hours}h</td>
+      <td><div class="fac-acts">
+        <button class="btn-edit" onclick="editCourse(${ri})">✏️ Edit</button>
+        <button class="btn-del"  onclick="promptDel(${ri},'${c.title.replace(/'/g,"\\'")}')" >🗑️</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+  updateFacStats();
+}
+
+function updateFacStats(){
+  document.getElementById('fs-total').textContent=FAC.length;
+  document.getElementById('fs-free').textContent=FAC.filter(c=>c.free).length;
+  document.getElementById('fs-paid').textContent=FAC.filter(c=>!c.free).length;
+  document.getElementById('fs-hard').textContent=FAC.filter(c=>c.diff==='hard').length;
+}
+
+/* ── MODAL OPEN/CLOSE ─── */
+function openFacModal(idx=null){
+  editIdx=idx;
+  const isEdit=idx!==null;
+  document.getElementById('fm-title').textContent=isEdit?'Edit Course':'Add New Course';
+  document.getElementById('fm-sub').textContent=isEdit?'Update the course details below.':'Fill in the details to add a new course.';
+  document.getElementById('fm-save-btn').textContent=isEdit?'Save Changes':'Save Course';
+  if(isEdit){
+    const c=FAC[idx];
+    document.getElementById('fc-courseId').value=c.course_id;
+    document.getElementById('fc-title').value=c.title;
+    document.getElementById('fc-co').value=c.cid;
+    document.getElementById('fc-phase').value=c.pi;
+    document.getElementById('fc-diff').value=c.diff;
+    document.getElementById('fc-hrs').value=c.hours;
+  } else {
+    document.getElementById('fc-courseId').value='';
+    ['fc-title','fc-hrs'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('fc-co').value='google';
+    document.getElementById('fc-phase').value='0';
+    document.getElementById('fc-diff').value='medium';
+  }
+  document.getElementById('fac-modal-ov').classList.add('open');
+}
+function closeFacModal(){document.getElementById('fac-modal-ov').classList.remove('open');editIdx=null}
+
+/* ── SAVE ─── */
+function saveFacCourse(){
+  const title=document.getElementById('fc-title').value.trim();
+  const cid  =document.getElementById('fc-co').value;
+  const pi   =parseInt(document.getElementById('fc-phase').value);
+  const diff =document.getElementById('fc-diff').value;
+  const hrs  =parseInt(document.getElementById('fc-hrs').value)||10;
+  const courseId = document.getElementById('fc-courseId').value;
+
+  if(!title){showToast('⚠️ Course title is required.');return}
+
+  const action = courseId ? 'update' : 'create';
+  const body = courseId ? 
+    `action=${action}&courseId=${courseId}&title=${encodeURIComponent(title)}&difficulty=${diff}&hours=${hrs}&phaseId=${pi}` :
+    `action=${action}&phaseId=${pi}&company=${cid}&title=${encodeURIComponent(title)}&difficulty=${diff}&hours=${hrs}&facultyId=${CU.userId}`;
+
+  if(!CU || !CU.userId){
+    showToast('❌ Cannot save course: missing user ID.');
+    return;
+  }
+  fetch(COURSE_API, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: body
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return response.text();
+  })
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      if(data.success){
+        showToast(courseId ? '✅ Course updated!' : '🎉 Course added!');
+        closeFacModal();
+        initFacData(); // refresh data
+      } else {
+        showToast('❌ ' + (data.message || 'Unknown error'));
+      }
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError, 'response:', text);
+      showToast('❌ Error parsing response: ' + parseError.message);
+    }
+  })
+  .catch(error => {
+    showToast('❌ Error: ' + error.message);
+  });
+}
+
+/* ── EDIT ─── */
+function editCourse(idx){openFacModal(idx)}
+
+/* ── DELETE ─── */
+function promptDel(idx,title){
+  delIdx=idx;
+  document.getElementById('del-txt').textContent=`"${title}" will be permanently removed.`;
+  document.getElementById('del-ov').classList.add('open');
+}
+function confirmDel(){
+  if(delIdx===null)return;
+  const c=FAC[delIdx];
+  fetch(COURSE_API, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: `action=delete&courseId=${c.course_id}`
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return response.text();
+  })
+  .then(text => {
+    try {
+      const data = JSON.parse(text);
+      if(data.success){
+        FAC.splice(delIdx,1);
+        delIdx=null;
+        document.getElementById('del-ov').classList.remove('open');
+        renderFacTbl(); showToast('🗑️ Course deleted.');
+      } else {
+        showToast('❌ ' + (data.message || 'Delete failed'));
+      }
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError);
+      showToast('❌ Error parsing response');
+    }
+  })
+  .catch(error => {
+    showToast('❌ Error: ' + error.message);
+  });
+}
+function cancelDel(){delIdx=null;document.getElementById('del-ov').classList.remove('open')}
+
+/* ── TOAST ─── */
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
